@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: systems-dynamic
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/AmirToledano/gitops.git
+        revision: example-2-dynamic-generator
+        directories:
+          - path: systems/*/qa
+  template:
+    metadata:
+      name: 'systems-{{index .path.segments 1}}-{{.path.basename}}'
+    spec:
+      project: my-project
+      source:
+        repoURL: https://github.com/AmirToledano/gitops.git
+        targetRevision: example-2-dynamic-generator
+        path: '{{.path.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'systems-{{index .path.segments 1}}-{{.path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
