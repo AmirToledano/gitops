@@ -7,22 +7,26 @@ spec:
   generators:
     - list:
         elements:
-          - cluster: dev
+          - env: dev
             team: team-a
-          - cluster: qa
+          - env: qa
+            team: team-a
+          - env: prd
+            team: team-a
+          - env: stage
             team: team-a
   template:
     metadata:
-      name: '{{team}}-{{cluster}}'
+      name: '{{team}}-{{env}}'
     spec:
       project: my-project
       source:
         repoURL: https://github.com/AmirToledano/gitops.git
         targetRevision: example-1-appset
-        path: '{{team}}/k8s-{{cluster}}'
+        path: '{{team}}/k8s-{{env}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{team}}-{{cluster}}'
+        namespace: '{{team}}-{{env}}'
       syncPolicy:
         automated:
           prune: true
