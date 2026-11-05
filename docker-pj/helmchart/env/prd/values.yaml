@@ -1,7 +1,7 @@
 replicaCount: 3
 
 image:
-  tag: "v1"
+  tag: "3"
 
 ingress:
   host: prd.docker-pj.local
