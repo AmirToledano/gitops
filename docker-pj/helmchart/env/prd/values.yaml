@@ -1,0 +1,10 @@
+replicaCount: 3
+
+image:
+  tag: "v1"
+
+ingress:
+  host: prd.docker-pj.local
+
+config:
+  appMessage: "Hello from docker-pj - PRD environment (deployed by ArgoCD)"

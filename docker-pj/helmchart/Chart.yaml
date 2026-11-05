@@ -1,0 +1,6 @@
+apiVersion: v2
+name: docker-pj
+description: Helm chart for the DockerPJ learning project - deploys the Flask app to Kubernetes
+type: application
+version: 0.1.0
+appVersion: "v1"

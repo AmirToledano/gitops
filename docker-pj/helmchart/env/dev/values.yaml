@@ -1,0 +1,10 @@
+replicaCount: 1
+
+image:
+  tag: "v1"
+
+ingress:
+  host: dev.docker-pj.local
+
+config:
+  appMessage: "Hello from docker-pj - DEV environment (deployed by ArgoCD)"

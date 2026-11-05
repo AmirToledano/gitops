@@ -1,0 +1,10 @@
+replicaCount: 2
+
+image:
+  tag: "v1"
+
+ingress:
+  host: qa.docker-pj.local
+
+config:
+  appMessage: "Hello from docker-pj - QA environment (deployed by ArgoCD)"
